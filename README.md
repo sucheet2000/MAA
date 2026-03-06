@@ -1,77 +1,113 @@
 # MAA — My Automated Advisor
 
-A local-first, skill-based engineering standards system. Runs on your machine. Lives in Git. No cloud, no database, no web UI.
+A local-first engineering standards enforcement system.
+Runs on your machine. Lives in Git. No cloud, no database, no web UI.
 
-## What It Does
+---
 
-MAA lets you:
-- Run structured reviews of real projects against your approved engineering standards
-- Track candidate practices you're considering adopting
-- Record approvals and rejections with rationale
-- Keep all standards, decisions, and reports version-controlled in Git
+## What MAA is
 
-## Directory Layout
+MAA reviews engineering work — plans and implementations — against a curated body of engineering standards. It detects what is present or absent in a repository, maps findings against a standard, and produces a structured Markdown report.
 
-```
-MAA/
-├── maa                          # CLI entrypoint — run this
-├── standards/                   # Approved engineering standards (Markdown)
-├── policies/                    # Cross-cutting rules and processes
-├── sources/                     # Curated trusted sources (YAML)
-├── skills/                      # Skill folders (SKILL.md + templates)
-│   └── review/
-│       └── frontend-review/
-├── scripts/                     # Bash scripts invoked by the CLI
-├── reports/reviews/             # Generated review reports
-├── candidates/                  # Candidate practices under consideration
-├── evaluations/                 # Evaluation records
-├── decisions/                   # Approval/rejection records
-└── .maa/config.yaml             # Local configuration
-```
+MAA's job starts after you have decided what to build. It does not originate decisions. It verifies that your decisions and implementation meet a known quality bar.
 
-## Quick Start
+**Current operating mode: Build Review.** Given a project path and a domain, MAA probes the filesystem for detectable signals — config files, dependency files, directory conventions, tooling markers — and produces a gap report against the relevant standard. All detection is `grep`, `test -f`, and `find`. No code execution, no network calls.
 
-### Run a frontend review
+---
 
-```bash
-./maa review frontend /path/to/your/project
-```
+## What MAA is not
 
-This will:
-1. Validate the project path
-2. Detect whether it looks like a frontend project
-3. Run a set of concrete checks (framework, linting, formatting, tests, etc.)
-4. Write a Markdown report to `reports/reviews/`
-5. Print the report path
+| MAA is NOT | Notes |
+|---|---|
+| A product strategy tool | Does not evaluate market fit, scope, or prioritisation |
+| An architecture advisor | Does not invent system designs or propose approaches |
+| A code generator | Reviews code — does not produce it |
+| A linter or static analyser | Checks whether linters are configured — does not run them |
+| A CI/CD pipeline component | Local-first, human-invoked — not an automated gate |
 
-### Read the report
+The sharpest statement of the boundary: **MAA does not decide what to build. It decides whether what you are building meets the bar.**
 
-```bash
-cat reports/reviews/YYYY-MM-DD-<project>-frontend.md
-```
+---
+
+## Supported Review Domains
+
+| Domain | Command | Standard | Notes |
+|--------|---------|----------|-------|
+| Frontend | `maa review frontend` | `standards/frontend.md` | React/Node ecosystem |
+| Backend | `maa review backend` | `standards/backend-node.md` | Node.js only currently |
+| API Design | `maa review api-design` | `standards/api-design.md` | OpenAPI/Swagger spec detection |
+| Security | `maa review security` | `standards/security.md` | Repository hygiene signals |
+
+---
 
 ## Commands
 
 ```bash
-./maa review frontend <project-path>   # Run a frontend standards review
-./maa help                             # Show usage
+# Run a review
+maa review frontend   <project-path>
+maa review backend    <project-path>
+maa review api-design <project-path>
+maa review security   <project-path>
+
+# Help
+maa help
 ```
 
-## Sprint 1 Scope
+Reports are written to `reports/reviews/YYYY-MM-DD-<project>-<domain>.md` in this repo.
 
-Sprint 1 implements the narrowest useful slice:
-- Repo scaffolding
-- Frontend standards document
-- Frontend review skill
-- `maa review frontend` command with concrete bash checks
+---
 
-Future sprints will add: evaluation pipeline, approval workflow, more domains, discovery tooling.
+## Repo Structure
 
-## Configuration
+```
+MAA/
+├── maa                          # CLI entrypoint
+├── scripts/                     # One bash script per domain
+│   ├── maa-review.sh            # frontend
+│   ├── maa-backend-review.sh    # backend (Node.js)
+│   ├── maa-api-design-review.sh # api-design
+│   └── maa-security-review.sh   # security
+├── standards/                   # Approved standards (Markdown, versioned)
+│   ├── frontend.md
+│   ├── backend-node.md
+│   ├── api-design.md
+│   ├── security.md
+│   └── _index.md                # Standards registry
+├── skills/review/               # Skill definitions and report templates
+│   ├── frontend-review/
+│   ├── backend-node-review/
+│   ├── api-design-review/
+│   └── security-review/
+├── reports/reviews/             # Generated review reports (gitignored)
+├── docs/                        # Project documentation
+│   └── maa-product-definition.md
+├── decisions/                   # Approval and rejection records
+├── candidates/                  # Candidate practices under evaluation
+└── .maa/config.yaml             # Local configuration (not yet read at runtime)
+```
 
-`.maa/config.yaml` is scaffolded but **not yet read at runtime** (Sprint 1). The scripts
-hardcode paths relative to the repo root, which match the defaults in the config file.
-Fill in your name; everything else takes effect once config parsing is wired up in a later sprint.
+---
+
+## Roadmap
+
+### Build Review (current focus)
+
+| Domain | Status |
+|--------|--------|
+| Frontend | Done |
+| Backend — Node.js | Done |
+| API Design | Done |
+| Security | Done |
+| Backend — Python | Planned |
+| Testing (cross-domain) | Planned |
+
+### Plan Review (deferred)
+
+Plan Review — reviewing documents (specs, architecture docs, ADRs) against standards — requires different infrastructure than Build Review. It is not built yet and will not be started until there are enough solid Build Review domains to make the standards corpus useful.
+
+See `docs/maa-product-definition.md` for the full product definition and system boundary.
+
+---
 
 ## Philosophy
 
