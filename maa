@@ -5,6 +5,7 @@
 #   maa review frontend <project-path>    Run a frontend standards review
 #   maa review backend <project-path>     Run a Node.js backend standards review
 #   maa review api-design <project-path>  Run an API design standards review
+#   maa review security <project-path>    Run a security hygiene review
 #   maa help                              Show this help message
 #
 # All commands route to scripts/ — edit the scripts directly to change behaviour.
@@ -25,12 +26,14 @@ Usage:
   maa review frontend <project-path>    Run a frontend standards review
   maa review backend <project-path>     Run a Node.js backend standards review
   maa review api-design <project-path>  Run an API design standards review
+  maa review security <project-path>    Run a security hygiene review
   maa help                              Show this help
 
 Examples:
   maa review frontend ~/projects/my-app
   maa review backend ~/projects/my-api
   maa review api-design ~/projects/my-api
+  maa review security ~/projects/my-api
   maa review frontend .
 
 Reports are saved to reports/reviews/ in this repo.
@@ -49,7 +52,7 @@ case "$COMMAND" in
     DOMAIN="${2:-}"
     if [[ -z "$DOMAIN" ]]; then
       echo "Error: missing domain. Usage: maa review <domain> <project-path>" >&2
-      echo "Available domains: frontend, backend, api-design" >&2
+      echo "Available domains: frontend, backend, api-design, security" >&2
       exit 1
     fi
 
@@ -69,8 +72,11 @@ case "$COMMAND" in
       api-design)
         exec "$REPO_ROOT/scripts/maa-api-design-review.sh" "$PROJECT_PATH"
         ;;
+      security)
+        exec "$REPO_ROOT/scripts/maa-security-review.sh" "$PROJECT_PATH"
+        ;;
       *)
-        echo "Error: unknown domain '$DOMAIN'. Available domains: frontend, backend, api-design" >&2
+        echo "Error: unknown domain '$DOMAIN'. Available domains: frontend, backend, api-design, security" >&2
         exit 1
         ;;
     esac
