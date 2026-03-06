@@ -34,6 +34,8 @@ the check found no signal — it does not mean the project is failing.
 | Linting (ESLint) | {{CHECK_LINTING}} |
 | Formatting (Prettier) | {{CHECK_FORMATTING}} |
 | Testing setup | {{CHECK_TESTING}} |
+| Lock file | {{CHECK_LOCK_FILE}} |
+| Env example file | {{CHECK_ENV_EXAMPLE}} |
 | README.md | {{CHECK_README}} |
 | .gitignore | {{CHECK_GITIGNORE}} |
 
@@ -64,6 +66,12 @@ addressed before the project is considered standards-compliant.
 
 - [ ] Framework detected — `{{CHECK_FRAMEWORK}}`
 - [ ] (Manual) Framework version is current / not EOL
+
+### Configuration Management
+
+- [ ] Lock file committed — `{{CHECK_LOCK_FILE}}`
+- [ ] Env example file present — `{{CHECK_ENV_EXAMPLE}}`
+- [ ] (Manual) No secrets committed; .env is gitignored
 
 ### Documentation & Hygiene
 

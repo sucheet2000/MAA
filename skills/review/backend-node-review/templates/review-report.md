@@ -36,6 +36,7 @@ the check found no signal — it does not mean the project is failing.
 | Formatting (Prettier) | {{CHECK_FORMATTING}} |
 | Testing setup | {{CHECK_TESTING}} |
 | Env example file | {{CHECK_ENV_EXAMPLE}} |
+| Lock file | {{CHECK_LOCK_FILE}} |
 | README.md | {{CHECK_README}} |
 | .gitignore | {{CHECK_GITIGNORE}} |
 
@@ -74,6 +75,7 @@ addressed before the project is considered standards-compliant.
 ### Configuration Management (§9)
 
 - [ ] Env example file present — `{{CHECK_ENV_EXAMPLE}}`
+- [ ] Lock file committed — `{{CHECK_LOCK_FILE}}`
 - [ ] (Manual) No secrets committed; .env is gitignored
 
 ### Tooling (§12)

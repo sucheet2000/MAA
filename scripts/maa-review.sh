@@ -234,6 +234,44 @@ detect_testing() {
 CHECK_TESTING="$(detect_testing "$PROJECT_PATH" "$PKG")"
 
 # ---------------------------------------------------------------------------
+# Check: dependency lock file
+# ---------------------------------------------------------------------------
+
+detect_lock_file() {
+  local dir="$1"
+
+  for f in package-lock.json yarn.lock pnpm-lock.yaml; do
+    if [[ -f "$dir/$f" ]]; then
+      echo "detected ($f)"
+      return
+    fi
+  done
+
+  echo "not detected"
+}
+
+CHECK_LOCK_FILE="$(detect_lock_file "$PROJECT_PATH")"
+
+# ---------------------------------------------------------------------------
+# Check: env example file (.env.example, .env.sample, example.env)
+# ---------------------------------------------------------------------------
+
+detect_env_example() {
+  local dir="$1"
+
+  for f in .env.example .env.sample example.env; do
+    if [[ -f "$dir/$f" ]]; then
+      echo "detected ($f)"
+      return
+    fi
+  done
+
+  echo "not detected"
+}
+
+CHECK_ENV_EXAMPLE="$(detect_env_example "$PROJECT_PATH")"
+
+# ---------------------------------------------------------------------------
 # Check: README.md
 # ---------------------------------------------------------------------------
 
@@ -293,25 +331,23 @@ escape_sed() {
   printf '%s' "$1" | sed 's/\\/\\\\/g; s/[&|]/\\&/g'
 }
 
-ESC_PROJECT_NAME="$(escape_sed "$PROJECT_NAME")"
-ESC_PROJECT_PATH="$(escape_sed "$PROJECT_PATH")"
-ESC_STANDARD_VERSION="$(escape_sed "$STANDARD_VERSION")"
-
 sed \
-  -e "s|{{PROJECT_NAME}}|$ESC_PROJECT_NAME|g" \
-  -e "s|{{PROJECT_PATH}}|$ESC_PROJECT_PATH|g" \
+  -e "s|{{PROJECT_NAME}}|$(escape_sed "$PROJECT_NAME")|g" \
+  -e "s|{{PROJECT_PATH}}|$(escape_sed "$PROJECT_PATH")|g" \
   -e "s|{{REVIEW_DATE}}|$REVIEW_DATE|g" \
-  -e "s|{{STANDARD_VERSION}}|$ESC_STANDARD_VERSION|g" \
-  -e "s|{{CHECK_PACKAGE_JSON}}|$CHECK_PACKAGE_JSON|g" \
-  -e "s|{{CHECK_SRC_DIR}}|$CHECK_SRC_DIR|g" \
-  -e "s|{{CHECK_PUBLIC_DIR}}|$CHECK_PUBLIC_DIR|g" \
-  -e "s|{{CHECK_FRAMEWORK}}|$CHECK_FRAMEWORK|g" \
-  -e "s|{{CHECK_LINTING}}|$CHECK_LINTING|g" \
-  -e "s|{{CHECK_FORMATTING}}|$CHECK_FORMATTING|g" \
-  -e "s|{{CHECK_TESTING}}|$CHECK_TESTING|g" \
-  -e "s|{{CHECK_README}}|$CHECK_README|g" \
-  -e "s|{{CHECK_GITIGNORE}}|$CHECK_GITIGNORE|g" \
-  -e "s|{{CHECK_TYPESCRIPT}}|$CHECK_TYPESCRIPT|g" \
+  -e "s|{{STANDARD_VERSION}}|$(escape_sed "$STANDARD_VERSION")|g" \
+  -e "s|{{CHECK_PACKAGE_JSON}}|$(escape_sed "$CHECK_PACKAGE_JSON")|g" \
+  -e "s|{{CHECK_SRC_DIR}}|$(escape_sed "$CHECK_SRC_DIR")|g" \
+  -e "s|{{CHECK_PUBLIC_DIR}}|$(escape_sed "$CHECK_PUBLIC_DIR")|g" \
+  -e "s|{{CHECK_FRAMEWORK}}|$(escape_sed "$CHECK_FRAMEWORK")|g" \
+  -e "s|{{CHECK_LINTING}}|$(escape_sed "$CHECK_LINTING")|g" \
+  -e "s|{{CHECK_FORMATTING}}|$(escape_sed "$CHECK_FORMATTING")|g" \
+  -e "s|{{CHECK_TESTING}}|$(escape_sed "$CHECK_TESTING")|g" \
+  -e "s|{{CHECK_README}}|$(escape_sed "$CHECK_README")|g" \
+  -e "s|{{CHECK_GITIGNORE}}|$(escape_sed "$CHECK_GITIGNORE")|g" \
+  -e "s|{{CHECK_TYPESCRIPT}}|$(escape_sed "$CHECK_TYPESCRIPT")|g" \
+  -e "s|{{CHECK_LOCK_FILE}}|$(escape_sed "$CHECK_LOCK_FILE")|g" \
+  -e "s|{{CHECK_ENV_EXAMPLE}}|$(escape_sed "$CHECK_ENV_EXAMPLE")|g" \
   "$TEMPLATE" > "$REPORT_PATH"
 
 # ---------------------------------------------------------------------------
@@ -334,6 +370,8 @@ echo "  Linting          : $CHECK_LINTING"
 echo "  Formatting       : $CHECK_FORMATTING"
 echo "  Testing          : $CHECK_TESTING"
 echo "  TypeScript       : $CHECK_TYPESCRIPT"
+echo "  Lock file        : $CHECK_LOCK_FILE"
+echo "  Env example      : $CHECK_ENV_EXAMPLE"
 echo "  README.md        : $CHECK_README"
 echo "  .gitignore       : $CHECK_GITIGNORE"
 echo ""
