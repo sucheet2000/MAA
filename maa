@@ -8,6 +8,7 @@
 #   maa review api-design      <project-path>  Run an API design standards review
 #   maa review security        <project-path>  Run a security hygiene review
 #   maa review testing         <project-path>  Run a cross-cutting testing review
+#   maa review deployment      <project-path>  Run a deployment hygiene review
 #   maa help                                   Show this help message
 #
 # All commands route to scripts/ — edit the scripts directly to change behaviour.
@@ -31,6 +32,7 @@ Usage:
   maa review api-design      <project-path>  Run an API design standards review
   maa review security        <project-path>  Run a security hygiene review
   maa review testing         <project-path>  Run a cross-cutting testing review
+  maa review deployment      <project-path>  Run a deployment hygiene review
   maa help                                   Show this help
 
 Examples:
@@ -40,6 +42,7 @@ Examples:
   maa review api-design      ~/projects/my-api
   maa review security        ~/projects/my-api
   maa review testing         ~/projects/my-api
+  maa review deployment      ~/projects/my-api
 
 Reports are saved to reports/reviews/ in this repo.
 EOF
@@ -56,7 +59,7 @@ case "$COMMAND" in
     DOMAIN="${2:-}"
     if [[ -z "$DOMAIN" ]]; then
       echo "Error: missing domain. Usage: maa review <domain> <project-path>" >&2
-      echo "Available domains: frontend, backend, backend-python, api-design, security, testing" >&2
+      echo "Available domains: frontend, backend, backend-python, api-design, security, testing, deployment" >&2
       exit 1
     fi
 
@@ -85,8 +88,11 @@ case "$COMMAND" in
       testing)
         exec "$REPO_ROOT/scripts/maa-testing-review.sh" "$PROJECT_PATH"
         ;;
+      deployment)
+        exec "$REPO_ROOT/scripts/maa-deployment-review.sh" "$PROJECT_PATH"
+        ;;
       *)
-        echo "Error: unknown domain '$DOMAIN'. Available domains: frontend, backend, backend-python, api-design, security, testing" >&2
+        echo "Error: unknown domain '$DOMAIN'. Available domains: frontend, backend, backend-python, api-design, security, testing, deployment" >&2
         exit 1
         ;;
     esac

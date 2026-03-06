@@ -14,6 +14,7 @@ All approved engineering standards. Each entry is a versioned document in `stand
 | security | security.md | security | 1.0.0 | 2026-03-05 | 2026-03-05 | Secret hygiene, dependency management, auth, input validation, HTTP headers, transport security, containers, CORS, disclosure |
 | backend-python | backend-python.md | backend / Python | 1.0.0 | 2026-03-06 | 2026-03-06 | Project definition, gitignore, framework, type checking, linting, formatting, testing, lock file, env template, README |
 | testing | testing.md | testing (cross-cutting) | 1.0.0 | 2026-03-06 | 2026-03-06 | Test organisation, runner config, coverage, thresholds, CI automation, test breadth, fixtures, DX, docs, artifact hygiene |
+| deployment | deployment.md | deployment (cross-cutting) | 1.0.0 | 2026-03-06 | 2026-03-06 | Deployment config, container hygiene, security, base image versioning, process definition, health checks, local dev parity |
 
 ---
 
