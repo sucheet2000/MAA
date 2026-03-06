@@ -48,7 +48,8 @@ PROJECT_PATH="$(cd "$1" 2>/dev/null && pwd)" || {
 
 PROJECT_NAME="$(basename "$PROJECT_PATH")"
 REVIEW_DATE="$(date +%Y-%m-%d)"
-REPORT_FILENAME="${REVIEW_DATE}-${PROJECT_NAME}-backend-node.md"
+REPORT_SLUG="$(printf '%s' "$PROJECT_NAME" | tr ' /' '--')"
+REPORT_FILENAME="${REVIEW_DATE}-${REPORT_SLUG}-backend-node.md"
 
 # ---------------------------------------------------------------------------
 # Pre-flight checks
