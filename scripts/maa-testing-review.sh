@@ -238,7 +238,7 @@ detect_ci_tests() {
       fname="$(basename "$wf_file")"
       matching_files="${matching_files:+$matching_files, }$fname"
     fi
-  done < <(find "$workflows_dir" -maxdepth 1 -name '*.yml' -o -name '*.yaml' 2>/dev/null)
+  done < <(find "$workflows_dir" -maxdepth 1 \( -name '*.yml' -o -name '*.yaml' \) 2>/dev/null)
 
   if [[ -n "$matching_files" ]]; then
     echo "detected ($matching_files)"
@@ -365,7 +365,7 @@ detect_test_docs() {
 
   for f in README.md README.rst README; do
     if [[ -f "$dir/$f" ]]; then
-      if grep -qiE '\btest\b|pytest|jest|vitest' "$dir/$f" 2>/dev/null; then
+      if grep -qiE 'pytest|jest|vitest|npm test|yarn test|pnpm test|make test' "$dir/$f" 2>/dev/null; then
         echo "detected ($f mentions tests)"
       else
         echo "not detected ($f present but no test commands mentioned)"
