@@ -69,7 +69,9 @@ Future sprints will add: evaluation pipeline, approval workflow, more domains, d
 
 ## Configuration
 
-Edit `.maa/config.yaml` to set your name and default paths.
+`.maa/config.yaml` is scaffolded but **not yet read at runtime** (Sprint 1). The scripts
+hardcode paths relative to the repo root, which match the defaults in the config file.
+Fill in your name; everything else takes effect once config parsing is wired up in a later sprint.
 
 ## Philosophy
 

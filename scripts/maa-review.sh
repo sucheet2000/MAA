@@ -151,9 +151,16 @@ detect_linting() {
     fi
   done
 
-  # eslint in package.json (covers devDependencies)
+  # eslint as a dependency in package.json
   if grep -q '"eslint"' "$pkg" 2>/dev/null; then
     echo "detected (package.json)"
+    return
+  fi
+
+  # eslintConfig key in package.json — CRA and some other setups configure
+  # ESLint inline rather than in a standalone config file
+  if grep -q '"eslintConfig"' "$pkg" 2>/dev/null; then
+    echo "detected (eslintConfig in package.json)"
     return
   fi
 

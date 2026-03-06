@@ -50,11 +50,11 @@ code analysis.
 
 ## Checks
 
-### Required signals (fail if missing)
-- `package.json` exists
-- `src/` directory exists
+### Required signals (script exits if missing)
+- `package.json` exists — exit 1, not a Node-based frontend project
 
-### Detected signals (not-detected is informational, not a failure)
+### Informational signals (marked "not detected" if absent, never a hard stop)
+- `src/` directory exists — expected but absence does not abort the review
 - `public/` directory — standard for CRA, Vite, Next.js with static assets
 - Framework: React, Next.js, or Vite detected in `package.json`
 - Linting: ESLint config file or eslint in `package.json` dependencies
@@ -90,7 +90,7 @@ Use `templates/review-report.md`. Key sections:
 |-----------|-----------|
 | Project path does not exist | Exit 1 with clear error message |
 | `package.json` missing | Exit 1 — not a Node-based frontend project |
-| `src/` missing | Note in report as warning, continue |
+| `src/` missing | Mark "not detected" in report, continue |
 | Any check errors | Treat as "not detected", continue |
 
 ## References
