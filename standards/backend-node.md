@@ -96,6 +96,13 @@
 - Do not log sensitive data: passwords, tokens, credit card numbers, or personal identifiers
 - In production, write logs to stdout/stderr and let the infrastructure collect them — do not write to local files
 
+## 12. Tooling
+
+- Linting: ESLint with a strict config. No committed code should have lint errors.
+- Formatting: Prettier. Format on save or as a pre-commit hook.
+- Package manager: consistent across the project — pick one (npm, pnpm, or yarn) and do not mix lock files.
+- Type-checking: run `tsc --noEmit` as part of CI or pre-commit to catch type errors independently of the build.
+
 ---
 
 ## Changelog

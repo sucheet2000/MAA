@@ -76,7 +76,7 @@ addressed before the project is considered standards-compliant.
 - [ ] Env example file present — `{{CHECK_ENV_EXAMPLE}}`
 - [ ] (Manual) No secrets committed; .env is gitignored
 
-### Tooling
+### Tooling (§12)
 
 - [ ] ESLint configured — `{{CHECK_LINTING}}`
 - [ ] Prettier configured — `{{CHECK_FORMATTING}}`
