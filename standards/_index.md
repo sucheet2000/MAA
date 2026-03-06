@@ -10,6 +10,7 @@ All approved engineering standards. Each entry is a versioned document in `stand
 |----|------|--------|---------|--------------|---------------|---------|
 | frontend | frontend.md | frontend | 1.0.0 | 2026-03-05 | 2026-03-05 | Component architecture, TypeScript, state, a11y, performance, styling, testing, tooling |
 | backend-node | backend-node.md | backend / Node.js | 1.0.0 | 2026-03-05 | 2026-03-05 | Project structure, API design, TypeScript, error handling, validation, auth, DB, testing, config, security, logging |
+| api-design | api-design.md | api design | 1.0.0 | 2026-03-05 | 2026-03-05 | OpenAPI spec, versioning, resource naming, HTTP methods, response shapes, errors, docs, auth, pagination |
 
 ---
 
@@ -17,9 +18,8 @@ All approved engineering standards. Each entry is a versioned document in `stand
 
 | ID | Domain | Notes |
 |----|--------|-------|
-| backend-python | backend / Python | Python backend standards — Sprint 3 |
+| backend-python | backend / Python | Python backend standards — next |
 | backend-go | backend / Go | Go backend standards — future |
-| api-design | api | REST and GraphQL conventions |
 | security | security | Auth, secrets, headers, dependency hygiene |
 | testing | testing | Cross-domain testing standards |
 
