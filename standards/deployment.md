@@ -4,6 +4,8 @@
 **Last updated:** 2026-03-06
 **Domain:** Deployment (cross-cutting)
 **Status:** Approved
+**Origin:** seed
+**Sources:** none
 
 ---
 

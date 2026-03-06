@@ -4,6 +4,8 @@
 **Last updated:** 2026-03-05
 **Domain:** Frontend
 **Status:** Approved
+**Origin:** seed
+**Sources:** none
 
 ---
 

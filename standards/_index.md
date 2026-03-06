@@ -6,15 +6,15 @@ All approved engineering standards. Each entry is a versioned document in `stand
 
 ## Active Standards
 
-| ID | File | Domain | Version | Last Updated | Last Reviewed | Summary |
-|----|------|--------|---------|--------------|---------------|---------|
-| frontend | frontend.md | frontend | 1.0.0 | 2026-03-05 | 2026-03-05 | Component architecture, TypeScript, state, a11y, performance, styling, testing, tooling |
-| backend-node | backend-node.md | backend / Node.js | 1.0.0 | 2026-03-05 | 2026-03-05 | Project structure, API design, TypeScript, error handling, validation, auth, DB, testing, config, security, logging |
-| api-design | api-design.md | api design | 1.0.0 | 2026-03-05 | 2026-03-05 | OpenAPI spec, versioning, resource naming, HTTP methods, response shapes, errors, docs, auth, pagination |
-| security | security.md | security | 1.0.0 | 2026-03-05 | 2026-03-05 | Secret hygiene, dependency management, auth, input validation, HTTP headers, transport security, containers, CORS, disclosure |
-| backend-python | backend-python.md | backend / Python | 1.0.0 | 2026-03-06 | 2026-03-06 | Project definition, gitignore, framework, type checking, linting, formatting, testing, lock file, env template, README |
-| testing | testing.md | testing (cross-cutting) | 1.0.0 | 2026-03-06 | 2026-03-06 | Test organisation, runner config, coverage, thresholds, CI automation, test breadth, fixtures, DX, docs, artifact hygiene |
-| deployment | deployment.md | deployment (cross-cutting) | 1.0.0 | 2026-03-06 | 2026-03-06 | Deployment config, container hygiene, security, base image versioning, process definition, health checks, local dev parity |
+| ID | File | Domain | Version | Last Updated | Last Reviewed | Origin | Summary |
+|----|------|--------|---------|--------------|---------------|--------|---------|
+| frontend | frontend.md | frontend | 1.0.0 | 2026-03-05 | 2026-03-05 | seed | Component architecture, TypeScript, state, a11y, performance, styling, testing, tooling |
+| backend-node | backend-node.md | backend / Node.js | 1.0.0 | 2026-03-05 | 2026-03-05 | seed | Project structure, API design, TypeScript, error handling, validation, auth, DB, testing, config, security, logging |
+| api-design | api-design.md | api design | 1.0.0 | 2026-03-05 | 2026-03-05 | seed | OpenAPI spec, versioning, resource naming, HTTP methods, response shapes, errors, docs, auth, pagination |
+| security | security.md | security | 1.0.0 | 2026-03-05 | 2026-03-05 | seed | Secret hygiene, dependency management, auth, input validation, HTTP headers, transport security, containers, CORS, disclosure |
+| backend-python | backend-python.md | backend / Python | 1.0.0 | 2026-03-06 | 2026-03-06 | seed | Project definition, gitignore, framework, type checking, linting, formatting, testing, lock file, env template, README |
+| testing | testing.md | testing (cross-cutting) | 1.0.0 | 2026-03-06 | 2026-03-06 | seed | Test organisation, runner config, coverage, thresholds, CI automation, test breadth, fixtures, DX, docs, artifact hygiene |
+| deployment | deployment.md | deployment (cross-cutting) | 1.0.0 | 2026-03-06 | 2026-03-06 | seed | Deployment config, container hygiene, security, base image versioning, process definition, health checks, local dev parity |
 
 ---
 
