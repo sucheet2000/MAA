@@ -1,0 +1,69 @@
+# Trusted Sources
+# Sources used when discovering candidate practices.
+# trust_level: authoritative | high | medium
+# Keep this list curated — prefer fewer high-quality sources over many mediocre ones.
+
+sources:
+  - id: react-docs
+    name: React Official Documentation
+    url: https://react.dev
+    domain: frontend
+    trust_level: authoritative
+    last_checked: 2026-03-05
+    notes: "Official source of truth for React patterns and APIs."
+
+  - id: typescript-handbook
+    name: TypeScript Handbook
+    url: https://www.typescriptlang.org/docs/handbook/
+    domain: frontend
+    trust_level: authoritative
+    last_checked: 2026-03-05
+    notes: "Official TypeScript docs. Trust completely for language semantics."
+
+  - id: owasp-top-10
+    name: OWASP Top 10
+    url: https://owasp.org/www-project-top-ten/
+    domain: security
+    trust_level: authoritative
+    last_checked: 2026-03-05
+    notes: "Industry standard security vulnerability classification. Required reading for security standards."
+
+  - id: mdn-web-docs
+    name: MDN Web Docs
+    url: https://developer.mozilla.org
+    domain: frontend
+    trust_level: authoritative
+    last_checked: 2026-03-05
+    notes: "Ground truth for browser APIs, HTML semantics, CSS, and web platform features."
+
+  - id: kent-c-dodds-blog
+    name: Kent C. Dodds Blog
+    url: https://kentcdodds.com/blog
+    domain: frontend
+    trust_level: high
+    last_checked: 2026-03-05
+    notes: "Testing and React patterns. Opinionated but well-reasoned. Author of Testing Library."
+
+  - id: web-dev-google
+    name: web.dev (Google Chrome team)
+    url: https://web.dev
+    domain: frontend
+    trust_level: high
+    last_checked: 2026-03-05
+    notes: "Performance, Core Web Vitals, accessibility, and modern web platform guidance."
+
+  - id: eslint-docs
+    name: ESLint Documentation
+    url: https://eslint.org/docs/latest/
+    domain: frontend
+    trust_level: authoritative
+    last_checked: 2026-03-05
+    notes: "Official ESLint rules and configuration reference."
+
+  - id: nextjs-docs
+    name: Next.js Documentation
+    url: https://nextjs.org/docs
+    domain: frontend
+    trust_level: authoritative
+    last_checked: 2026-03-05
+    notes: "Official Next.js docs. Trust for Next-specific patterns; use react-docs for React fundamentals."

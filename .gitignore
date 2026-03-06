@@ -1,0 +1,8 @@
+# MAA repo gitignore
+# Reports are intentionally committed — they are the output of the system.
+# Only ignore truly transient files.
+
+.DS_Store
+*.swp
+*.swo
+*~

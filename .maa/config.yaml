@@ -1,0 +1,21 @@
+# MAA local configuration
+# Edit this file to match your setup.
+
+user: your-name
+
+# Directories (relative to repo root)
+report_dir: reports/reviews
+standards_dir: standards
+policies_dir: policies
+skills_dir: skills
+candidates_dir: candidates
+evaluations_dir: evaluations
+decisions_dir: decisions
+
+# Defaults
+default_domain: frontend
+
+# Trusted source policy
+# Practices from authoritative sources can be evaluated without extra scrutiny.
+# Practices from medium-trust sources require manual verification before approval.
+min_trust_for_auto_eval: high
