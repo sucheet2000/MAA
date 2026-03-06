@@ -255,17 +255,38 @@ fi
 # ---------------------------------------------------------------------------
 # Render the report
 # Replace {{PLACEHOLDER}} tokens in the template with check results.
-# Uses sed; no special characters in values, so this is safe.
 # ---------------------------------------------------------------------------
 
 mkdir -p "$REPORT_DIR"
 REPORT_PATH="$REPORT_DIR/$REPORT_FILENAME"
 
+# Guard: do not silently overwrite a report that may already have manual notes.
+if [[ -f "$REPORT_PATH" ]]; then
+  echo "Error: a report already exists for today:" >&2
+  echo "  $REPORT_PATH" >&2
+  echo "Delete or rename the existing report first, then re-run." >&2
+  exit 1
+fi
+
+# Escape values for safe use in sed replacement strings.
+# In sed s|pattern|replacement|g, three chars are special in the replacement:
+#   &  → expands to the matched text   → must become \&
+#   \  → starts an escape sequence     → must become \\
+#   |  → the delimiter we chose        → must become \|
+# Escape \ first so later substitutions don't double-escape it.
+escape_sed() {
+  printf '%s' "$1" | sed 's/\\/\\\\/g; s/[&|]/\\&/g'
+}
+
+ESC_PROJECT_NAME="$(escape_sed "$PROJECT_NAME")"
+ESC_PROJECT_PATH="$(escape_sed "$PROJECT_PATH")"
+ESC_STANDARD_VERSION="$(escape_sed "$STANDARD_VERSION")"
+
 sed \
-  -e "s|{{PROJECT_NAME}}|$PROJECT_NAME|g" \
-  -e "s|{{PROJECT_PATH}}|$PROJECT_PATH|g" \
+  -e "s|{{PROJECT_NAME}}|$ESC_PROJECT_NAME|g" \
+  -e "s|{{PROJECT_PATH}}|$ESC_PROJECT_PATH|g" \
   -e "s|{{REVIEW_DATE}}|$REVIEW_DATE|g" \
-  -e "s|{{STANDARD_VERSION}}|$STANDARD_VERSION|g" \
+  -e "s|{{STANDARD_VERSION}}|$ESC_STANDARD_VERSION|g" \
   -e "s|{{CHECK_PACKAGE_JSON}}|$CHECK_PACKAGE_JSON|g" \
   -e "s|{{CHECK_SRC_DIR}}|$CHECK_SRC_DIR|g" \
   -e "s|{{CHECK_PUBLIC_DIR}}|$CHECK_PUBLIC_DIR|g" \

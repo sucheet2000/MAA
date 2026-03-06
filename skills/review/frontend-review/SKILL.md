@@ -57,7 +57,7 @@ code analysis.
 - `src/` directory exists — expected but absence does not abort the review
 - `public/` directory — standard for CRA, Vite, Next.js with static assets
 - Framework: React, Next.js, or Vite detected in `package.json`
-- Linting: ESLint config file or eslint in `package.json` dependencies
+- Linting: standalone ESLint config file, `"eslint"` dependency in `package.json`, or `"eslintConfig"` key in `package.json` (CRA pattern)
 - Formatting: Prettier config file or prettier in `package.json` dependencies
 - Testing: test script in `package.json`, or Jest/Vitest/Playwright/Cypress config file
 - `README.md` present at project root
@@ -90,6 +90,7 @@ Use `templates/review-report.md`. Key sections:
 |-----------|-----------|
 | Project path does not exist | Exit 1 with clear error message |
 | `package.json` missing | Exit 1 — not a Node-based frontend project |
+| Same-day report already exists | Exit 1 — delete or rename existing report first |
 | `src/` missing | Mark "not detected" in report, continue |
 | Any check errors | Treat as "not detected", continue |
 

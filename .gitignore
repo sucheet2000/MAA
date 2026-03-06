@@ -1,7 +1,14 @@
 # MAA repo gitignore
-# Reports are intentionally committed — they are the output of the system.
-# Only ignore truly transient files.
 
+# Generated review reports — not committed in this tool/source repo.
+# If you want a permanent archive of reports, commit them in a separate repo
+# or manually git add a specific report you want to keep.
+reports/reviews/
+
+# IDE / Claude session-local settings — not part of the project
+.claude/
+
+# OS and editor noise
 .DS_Store
 *.swp
 *.swo
