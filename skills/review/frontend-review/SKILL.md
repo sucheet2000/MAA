@@ -57,6 +57,7 @@ code analysis.
 - `src/` directory exists — expected but absence does not abort the review
 - `public/` directory — standard for CRA, Vite, Next.js with static assets
 - Framework: React, Next.js, or Vite detected in `package.json`
+- TypeScript: `tsconfig.json` present, or `tsconfig.base.json` (monorepo root) — see standards §3
 - Linting: standalone ESLint config file, `"eslint"` dependency in `package.json`, or `"eslintConfig"` key in `package.json` (CRA pattern)
 - Formatting: Prettier config file or prettier in `package.json` dependencies
 - Testing: test script in `package.json`, or Jest/Vitest/Playwright/Cypress config file

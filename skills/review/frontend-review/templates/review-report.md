@@ -30,6 +30,7 @@ the check found no signal — it does not mean the project is failing.
 | src/ directory | {{CHECK_SRC_DIR}} |
 | public/ directory | {{CHECK_PUBLIC_DIR}} |
 | Frontend framework | {{CHECK_FRAMEWORK}} |
+| TypeScript (tsconfig) | {{CHECK_TYPESCRIPT}} |
 | Linting (ESLint) | {{CHECK_LINTING}} |
 | Formatting (Prettier) | {{CHECK_FORMATTING}} |
 | Testing setup | {{CHECK_TESTING}} |
@@ -45,9 +46,9 @@ addressed before the project is considered standards-compliant.
 
 ### Tooling (§9)
 
+- [ ] TypeScript configured (§3) — `{{CHECK_TYPESCRIPT}}`
 - [ ] ESLint configured — `{{CHECK_LINTING}}`
 - [ ] Prettier configured — `{{CHECK_FORMATTING}}`
-- [ ] TypeScript present (check tsconfig.json manually)
 
 ### Project Structure (§1)
 

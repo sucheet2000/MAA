@@ -9,7 +9,7 @@
 #   2. src/ directory exists
 #   3. public/ directory exists (informational)
 #   4. Framework signal: React, Next.js, or Vite
-#   5. Linting: ESLint config or eslint in package.json
+#   5. Linting: ESLint config file, eslint dependency, or eslintConfig key in package.json
 #   6. Formatting: Prettier config or prettier in package.json
 #   7. Testing: test script in package.json or common test config files
 #   8. README.md present
@@ -253,6 +253,20 @@ else
 fi
 
 # ---------------------------------------------------------------------------
+# Check: TypeScript signal
+# standards/frontend.md §3 — TypeScript is the default.
+# Check for tsconfig.json first; fall back to tsconfig.base.json (monorepos).
+# ---------------------------------------------------------------------------
+
+if [[ -f "$PROJECT_PATH/tsconfig.json" ]]; then
+  CHECK_TYPESCRIPT="detected (tsconfig.json)"
+elif [[ -f "$PROJECT_PATH/tsconfig.base.json" ]]; then
+  CHECK_TYPESCRIPT="detected (tsconfig.base.json)"
+else
+  CHECK_TYPESCRIPT="not detected"
+fi
+
+# ---------------------------------------------------------------------------
 # Render the report
 # Replace {{PLACEHOLDER}} tokens in the template with check results.
 # ---------------------------------------------------------------------------
@@ -296,6 +310,7 @@ sed \
   -e "s|{{CHECK_TESTING}}|$CHECK_TESTING|g" \
   -e "s|{{CHECK_README}}|$CHECK_README|g" \
   -e "s|{{CHECK_GITIGNORE}}|$CHECK_GITIGNORE|g" \
+  -e "s|{{CHECK_TYPESCRIPT}}|$CHECK_TYPESCRIPT|g" \
   "$TEMPLATE" > "$REPORT_PATH"
 
 # ---------------------------------------------------------------------------
@@ -317,6 +332,7 @@ echo "  Framework        : $CHECK_FRAMEWORK"
 echo "  Linting          : $CHECK_LINTING"
 echo "  Formatting       : $CHECK_FORMATTING"
 echo "  Testing          : $CHECK_TESTING"
+echo "  TypeScript       : $CHECK_TYPESCRIPT"
 echo "  README.md        : $CHECK_README"
 echo "  .gitignore       : $CHECK_GITIGNORE"
 echo ""
